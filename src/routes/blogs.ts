@@ -5,8 +5,15 @@ const blogs_router = express.Router();
 
 blogs_router.get("/", async (req: Request, res: Response) => {
   try {
-    const blogs = await BlogModel.find();
+    let blogs;
+    if (!req?.query?.recent) {
+      blogs = await BlogModel.find();
+      res.json(blogs);
+      return;
+    }
+    blogs = await (await BlogModel.find()).splice(-5);
     res.json(blogs);
+    return;
   } catch (err) {
     res.status(500).json({ message: err });
   }

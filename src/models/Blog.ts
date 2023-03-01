@@ -1,11 +1,10 @@
 import mongoose, { Schema } from "mongoose";
-import { formatDate } from "../utils/formatDate";
 
 interface IBlog {
   title: string;
   description: string;
   previewImageUrl: string;
-  createdAt: any;
+  createdAt: Date;
   tags: string[];
 }
 
@@ -13,7 +12,7 @@ const blogSchema = new Schema<IBlog>({
   title: { type: String, required: true },
   description: { type: String, required: true },
   previewImageUrl: { type: String, required: true },
-  createdAt: { type: String, default: formatDate(Date.now()) },
+  createdAt: { type: Date, default: Date.now() },
   tags: [{ type: String }],
 });
 

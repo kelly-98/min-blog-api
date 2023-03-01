@@ -27,6 +27,11 @@ const mongoString = process.env.DB_URL || "";
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
+app.use((req: Request, res, next) => {
+  req.requestTime = new Date(Date.now()).toISOString();
+  next();
+});
+
 app.use("/blogs", blogsRoute);
 
 database.on("error", (err: Error) => {

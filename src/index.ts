@@ -1,4 +1,5 @@
 import express, { Express, Request, Response } from "express";
+import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -9,6 +10,13 @@ dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 8000;
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 

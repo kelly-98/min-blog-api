@@ -22,7 +22,7 @@ const database = mongoose.connection;
 app.use("/blogs", blogsRoute);
 
 database.on("error", (err: Error) => {
-  console.log(err);
+  console.error(err);
 });
 
 database.once("open", () => {

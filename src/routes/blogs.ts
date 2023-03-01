@@ -6,7 +6,7 @@ const blogs_router = express.Router();
 blogs_router.get("/", async (req: Request, res: Response) => {
   try {
     const blogs = await BlogModel.find();
-    res.json({ data: blogs });
+    res.json({ data: blogs, status: 200 });
   } catch (err) {
     res.status(500).json({ message: err });
   }

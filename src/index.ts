@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-import blogsRoute from "./routes/blogs";
+import postsRoute from "./routes/post";
 
 dotenv.config();
 
@@ -27,12 +27,12 @@ const mongoString = process.env.DB_URL || "";
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
-app.use((req: Request, res, next) => {
-  req.requestTime = new Date(Date.now()).toISOString();
-  next();
-});
+// app.use((req: Request, res, next) => {
+//   req.requestTime = new Date(Date.now()).toISOString();
+//   next();
+// });
 
-app.use("/blogs", blogsRoute);
+app.use("/blogs", postsRoute);
 
 database.on("error", (err: Error) => {
   console.error(err);

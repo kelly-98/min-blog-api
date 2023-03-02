@@ -22,7 +22,7 @@ postsRoute.get("/", async (req: Request, res: Response) => {
 
 postsRoute.get("/recent", async (req: Request, res: Response) => {
   try {
-    const posts = (await BlogModel.find()).splice(-5);
+    const posts = (await BlogModel.find()).slice(-5);
     res.json(posts);
     return;
   } catch (err) {
